@@ -110,7 +110,7 @@ def place_update(place_id):
         abort(400, "Not a JSON")
 
     for k, v in place_update.items():
-        skips = ["id", "created_at", "updated_at"]
+        skips = ["user_id", "city_id", "id", "created_at", "updated_at"]
         if k not in skips:
             setattr(place, k, v)
 
