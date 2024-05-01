@@ -6,12 +6,12 @@ from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-from models.place import place_amenity
 
 
 class Amenity(BaseModel, Base):
     """Representation of Amenity """
     if models.storage_t == 'db':
+        from models.place import place_amenity
         __tablename__ = 'amenities'
         name = Column(String(128), nullable=False)
         place_amenities = relationship("Place", secondary=place_amenity)
