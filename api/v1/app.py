@@ -28,4 +28,12 @@ def not_found(e):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5000")
+    try:
+        host = os.environ.get('HBNB_API_HOST')
+    except Exception:
+        host = '0.0.0.0'
+
+    try:
+        port = os.environ.get('HBNB_API_PORT')
+    except Exception:
+        port = '5000'
