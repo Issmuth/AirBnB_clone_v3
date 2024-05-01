@@ -76,7 +76,7 @@ def cities_create(state_id):
     if not attrs:
         abort(400, "Not a JSON")
 
-    if 'name' not in attrs:
+    if 'name' not in attrs.keys():
         abort(400, "Missing name")
 
     state = storage.get(State, state_id)
