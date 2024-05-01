@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""creates an app that registers blueprints."""
+"""
+creates an app that registers blueprints.
+"""
+
 from flask import Flask, Response
 from models import storage
 from api.v1.views import app_views
