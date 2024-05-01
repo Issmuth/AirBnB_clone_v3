@@ -26,7 +26,7 @@ def reviews(place_id):
 
         review_list = []
         for review in reviews:
-            review_list.append(city.to_dict())
+            review_list.append(review.to_dict())
         data = json.dumps(review_list, indent=2) + '\n'
         reponse = Response(response=data,
                            status=200,
@@ -39,9 +39,9 @@ def reviews(place_id):
 @app_views.route('/reviews/<review_id>',
                  strict_slashes=False,
                  methods=['GET'])
-def review_by_id(city_id):
+def review_by_id(review_id):
     """retrieve a review object using id."""
-    review = storage.get(Review, city_id)
+    review = storage.get(Review, review_id)
     if review is not None:
         data = json.dumps(review.to_dict(), indent=2) + '\n'
         reponse = Response(response=data,
@@ -57,7 +57,7 @@ def review_by_id(city_id):
                  methods=['DELETE'])
 def reviews_delete(review_id):
     """Deletes a review object using id."""
-    review = storage.get(Review, city_id)
+    review = storage.get(Review, review_id)
     if review is not None:
         storage.delete(review)
         storage.save()
@@ -100,9 +100,9 @@ def reviews_create(place_id):
 @app_views.route('/reviews/<review_id>',
                  strict_slashes=False,
                  methods=['PUT'])
-def review_update(city_id):
+def review_update(review_id):
     """updates a review object."""
-    review = storage.get(Review, city_id)
+    review = storage.get(Review, review_id)
     if review is None:
         abort(404)
     review_update = request.get_json()
