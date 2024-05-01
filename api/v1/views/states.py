@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""View for states."""
+"""
+Module of view for States objects api.
+"""
 from api.v1.views import app_views
 from models import storage
 from models.state import State
