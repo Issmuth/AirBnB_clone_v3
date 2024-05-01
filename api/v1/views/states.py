@@ -67,8 +67,8 @@ def states_create():
     if 'name' not in request.json:
         abort(400, "Missing name")
 
-    name = request.get_json()['name']
-    state = State(name=name)
+    attrs = request.get_json()
+    state = State(**attrs)
     storage.new(state)
     storage.save()
     data = json.dumps(state.to_dict(), indent=2) + '\n'
