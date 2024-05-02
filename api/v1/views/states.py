@@ -62,16 +62,15 @@ def states_delete(state_id):
                  methods=['POST'])
 def states_create():
     """creates a state object."""
-    if not request.get_json():
+    attrs = request.get_json()
+    if not attrs:
         abort(400, "Not a JSON")
 
-    if 'name' not in request.json.keys():
+    if 'name' not in attrs.keys():
         abort(400, "Missing name")
 
-    attrs = request.get_json()
     state = State(**attrs)
-    storage.new(state)
-    storage.save()
+    state.save()
     data = json.dumps(state.to_dict(), indent=2) + '\n'
     reponse = Response(response=data,
                        status=201,
