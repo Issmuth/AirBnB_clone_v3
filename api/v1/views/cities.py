@@ -103,7 +103,7 @@ def city_update(city_id):
     if city is None:
         abort(404)
     city_update = request.get_json()
-    if not city_update:
+    if city_update is None:
         abort(400, "Not a JSON")
 
     for k, v in city_update.items():
